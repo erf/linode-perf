@@ -1,6 +1,6 @@
 #!/bin/sh
 
-locations=(
+urls=(
 	'http://speedtest.newark.linode.com/100MB-newark.bin'
 	'http://speedtest.atlanta.linode.com/100MB-atlanta.bin'
 	'http://speedtest.dallas.linode.com/100MB-dallas.bin'
@@ -13,11 +13,12 @@ locations=(
 
 names=('newark' 'atlanta' 'dallas' 'fremont' 'frankfurt' 'london' 'singapore' 'tokyo2')
 
-len=${#locations[@]}
+len=${#urls[@]}
 
 for (( i=0; i<$len; i++ ));
 do
-  echo $(($i+1))"/"$len ${names[$i]}
-  time wget --output-document=/dev/null ${locations[$i]}
+	echo
+	echo $(($i+1))"/"$len ${names[$i]}
+	wget -O /dev/null -q --show-progress ${urls[$i]}
 done
 
